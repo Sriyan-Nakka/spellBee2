@@ -89,6 +89,9 @@
         summary:hover {
           font-size: 110%;
         }
+        #resetButton:hover {
+          --button-bg: hsl(5, 60%, 40%);
+        }
       }
       #loadingDiv {
         display: flex;
@@ -98,6 +101,17 @@
       #wordDiv,
       #loadingDiv {
         display: none;
+      }
+      #wordDiv p {
+        margin: 10px 0px;
+      }
+      #resetButton {
+        transition: all 0.2s ease-in-out;
+        --button-bg: hsl(5, 77%, 55%);
+      }
+      input {
+        font-size: 1.2rem;
+        padding: 3px;
       }
     </style>
   </head>
@@ -151,7 +165,22 @@
           </path>
         </svg>
       </div>
-      <div id="wordDiv">Word</div>
+      <div id="wordDiv">
+        <p>
+          <audio src="" id="wordAudio" controls></audio>
+        </p>
+        <form id="wordForm">
+          <p>
+            <input type="text" id="wordInput" placeholder="Word" />
+            <button id="submitButton" type="submit">Submit</button>
+          </p>
+        </form>
+        <p><b>Words Spelled:</b> <span id="spelledSpan">0</span></p>
+        <p><b>Lives:</b> <span id="livesSpan">0</span></p>
+        <p>
+          <button id="resetButton">Reset</button>
+        </p>
+      </div>
     </main>
     <hr id="footerHr" />
     <footer>
@@ -182,7 +211,7 @@
         </a>
         <br />
         &copy; Copyright, Sai Sriyan Nakka 2025, All Rights Reserved.
-        <br />Version 0.2 <br />
+        <br />Version 0.4 <br />
       </center>
     </footer>
   </body>
