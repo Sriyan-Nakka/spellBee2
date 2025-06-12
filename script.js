@@ -5,7 +5,7 @@ const wordAudio = document.getElementById("wordAudio");
 const spelledSpan = document.getElementById("spelledSpan");
 const livesSpan = document.getElementById("livesSpan");
 
-let word = "";
+let currentWord = "";
 let lives = 3;
 let spelledWords = 0;
 
@@ -28,6 +28,7 @@ function playGame() {
 }
 
 function resetGame() {
+  currentWord = "";
   wordAudio.src = "";
   lives = 3;
   livesSpan.textContent = lives;
@@ -51,7 +52,7 @@ function findAudio(word) {
       if (!data.title) {
         console.log(data);
         if (data[0].phonetics[0] && data[0].phonetics[0].audio) {
-          word = data[0].word;
+          currentWord = data[0].word;
           wordAudio.src = data[0].phonetics[0].audio;
           loadingDiv.style.display = "none";
           wordDiv.style.display = "block";
@@ -68,7 +69,11 @@ const wordInput = document.getElementById("wordInput");
 
 document.querySelector("#wordForm").addEventListener("submit", (e) => {
   e.preventDefault();
-  if (word == wordInput.value.toLowerCase()) {
+  console.log("submit", wordInput.value.toLowerCase());
+  console.log(currentWord);
+  e.preventDefault();
+  if (currentWord === wordInput.value.toLowerCase()) {
+    console.log("working");
     spelledWords++;
     spelledSpan.textContent = spelledWords;
   }
