@@ -20,6 +20,17 @@ document.getElementById("resetButton").addEventListener("click", () => {
   findWord();
 });
 
+document.getElementById("continueButton").addEventListener("click", () => {
+  document.querySelector("#submitButton").style.display = "none";
+  wordInput.style.pointerEvents = "auto";
+  document.querySelector("#submitButton").style.display = "inline-block";
+  document.querySelector("#continueButton").style.display = "none";
+
+  wordDiv.style.display = "none";
+  loadingDiv.style.display = "flex";
+  findWord();
+});
+
 function playGame() {
   resetGame();
   document.getElementById("playButton").style.display = "none";
@@ -34,6 +45,9 @@ function resetGame() {
   livesSpan.textContent = lives;
   spelledWords = 0;
   spelledSpan.textContent = spelledWords;
+
+  document.querySelector("#continueButton").style.display = "none";
+  wordInput.style.pointerEvents = "auto";
 }
 
 function findWord() {
@@ -73,8 +87,34 @@ document.querySelector("#wordForm").addEventListener("submit", (e) => {
   console.log(currentWord);
   e.preventDefault();
   if (currentWord === wordInput.value.toLowerCase()) {
-    console.log("working");
     spelledWords++;
     spelledSpan.textContent = spelledWords;
+
+    document.querySelector("#submitButton").style.display = "none";
+    wordInput.value = "";
+    wordInput.blur();
+    wordInput.style.pointerEvents = "none";
+
+    setTimeout(() => {
+      if (spelledWords !== 5) {
+        document.querySelector("#continueButton").style.display =
+          "inline-block";
+      } else if (spelledWords === 5) {
+        //todo: write this function
+      }
+    }, 1000);
+  } else {
+    lives--;
+    livesSpan.textContent = lives;
+    alert("You lost a life!");
+    if (lives === 0) {
+      alert("You lost all your lives... Click Play to play again!");
+      restartGame();
+    }
   }
 });
+
+function restartGame() {
+  //* function where wordDiv is gone and shows playButton
+  //todo: write this function
+}
