@@ -20,7 +20,7 @@
       }
 
       * {
-        --bg: hsl(227, 37%, 5%);
+        --bg: hsla(227, 37%, 5%, 0.95);
         --button-bg: hsl(217, 33%, 15%);
         --accent1: hsl(43, 96%, 55%);
         --accent2: hsl(38, 92%, 50%);
@@ -44,8 +44,17 @@
         color: var(--text-main);
         font-size: 1.6rem;
         text-align: center;
-        background-color: var(--bg);
+        background-image: url("images/background.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         font-family: bodyFont, sans-serif;
+      }
+      #fullContainer {
+        background-color: var(--bg);
+        border: 2px solid var(--accent1);
+        border-radius: 10px;
       }
       footer {
         font-size: 1.4rem;
@@ -82,6 +91,7 @@
         margin: 15px 0px;
       }
       header h1 {
+        margin-top: 5px;
         color: var(--accent1);
         text-decoration: underline;
         text-decoration-color: var(--accent2);
@@ -151,109 +161,113 @@
   </head>
   <body>
     <script src="script.js" defer></script>
-    <header>
-      <h1>Spell Bee 2</h1>
-      <details>
-        <summary><u>How to Pla</u>y</summary>
-        <p style="margin: 10px 0px">
-          Welcome to Spell Bee 2! This is a remake of my previous Spell Bee
-          game.
-        </p>
-        <p style="margin-top: 10px">
-          This game is quite different than the first one. In this game, you
-          have to spell 5 words based on the audio. If you guess it right, you
-          will go to the next word, if not, you lose a life. There a total of 3
-          lives only. Good Luck!
-        </p>
-      </details>
-    </header>
-    <hr />
-    <main>
-      <button id="playButton">Play</button>
-      <div id="loadingDiv" style="margin-top: 10px">
-        Loading...&nbsp;
-        <!-- loading svg -->
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="40"
-          height="40"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="currentColor"
-            d="M12 2A10 10 0 1 0 22 12A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8A8 8 0 0 1 12 20Z"
-            opacity="0.5"
-          />
-          <path
-            fill="currentColor"
-            d="M20 12h2A10 10 0 0 0 12 2V4A8 8 0 0 1 20 12Z"
-          >
-            <animateTransform
-              attributeName="transform"
-              dur="1s"
-              from="0 12 12"
-              repeatCount="indefinite"
-              to="360 12 12"
-              type="rotate"
-            />
-          </path>
-        </svg>
-      </div>
-      <div id="wordDiv">
-        <p>
-          <audio src="" id="wordAudio" controls></audio>
-        </p>
-        <form id="wordForm">
-          <p>
-            <input type="text" id="wordInput" placeholder="Word" required />
-            <button id="submitButton" type="submit">Submit</button>
+    <div id="fullContainer">
+      <header>
+        <h1>Spell Bee 2</h1>
+        <details>
+          <summary><u>How to Pla</u>y</summary>
+          <p style="margin: 10px 0px">
+            Welcome to Spell Bee 2! This is a remake of my previous Spell Bee
+            game.
           </p>
-        </form>
-        <p><u>Words Spelled</u>: <span id="spelledSpan">0</span></p>
-        <p><u>Lives</u>: <span id="livesSpan">0</span></p>
-        <p>
-          <button id="resetButton">Reset</button>
-          <button id="continueButton">Continue</button>
-        </p>
-      </div>
-    </main>
-    <hr id="footerHr" />
-    <footer>
-      <center>
-        <a href="https://github.com/Sriyan-Nakka" target="_blank">
+          <p style="margin-top: 10px">
+            This game is quite different than the first one. In this game, you
+            have to spell 5 words based on the audio. If you guess it right, you
+            will go to the next word, if not, you lose a life. There a total of
+            3 lives only. Good Luck!
+          </p>
+        </details>
+      </header>
+      <hr />
+      <main>
+        <button id="playButton">Play</button>
+        <div id="loadingDiv" style="margin-top: 10px">
+          Loading...&nbsp;
+          <!-- loading svg -->
           <svg
-            class="icon github"
             xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
             viewBox="0 0 24 24"
           >
             <path
-              fill="white"
-              d="M12 1A10.89 10.89 0 0 0 1 11.77A10.79 10.79 0 0 0 8.52 22c.55.1.75-.23.75-.52v-1.83c-3.06.65-3.71-1.44-3.71-1.44a2.86 2.86 0 0 0-1.22-1.58c-1-.66.08-.65.08-.65a2.31 2.31 0 0 1 1.68 1.11a2.37 2.37 0 0 0 3.2.89a2.33 2.33 0 0 1 .7-1.44c-2.44-.27-5-1.19-5-5.32a4.15 4.15 0 0 1 1.11-2.91a3.78 3.78 0 0 1 .11-2.84s.93-.29 3 1.1a10.7 10.7 0 0 1 5.5 0c2.1-1.39 3-1.1 3-1.1a3.78 3.78 0 0 1 .11 2.84A4.15 4.15 0 0 1 19 11.2c0 4.14-2.58 5.05-5 5.32a2.5 2.5 0 0 1 .75 2v2.95c0 .35.2.63.75.52A10.8 10.8 0 0 0 23 11.77A10.89 10.89 0 0 0 12 1"
+              fill="currentColor"
+              d="M12 2A10 10 0 1 0 22 12A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8A8 8 0 0 1 12 20Z"
+              opacity="0.5"
             />
-          </svg>
-        </a>
-        <a href="https://sriyan-blogs.blogspot.com/">
-          <svg
-            class="icon blogger"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 32 32"
-          >
             <path
-              fill="white"
-              d="M13 7a6 6 0 0 0-6 6v7a6 6 0 0 0 6 6h7a6 6 0 0 0 6-6v-5a1 1 0 0 0-1-1h-1a1 1 0 0 1-1-1a6 6 0 0 0-6-6zm0 5h4c.55 0 1 .45 1 1s-.45 1-1 1h-4c-.55 0-1-.45-1-1s.45-1 1-1m0 7h7c.55 0 1 .45 1 1s-.45 1-1 1h-7c-.55 0-1-.45-1-1s.45-1 1-1"
-            />
+              fill="currentColor"
+              d="M20 12h2A10 10 0 0 0 12 2V4A8 8 0 0 1 20 12Z"
+            >
+              <animateTransform
+                attributeName="transform"
+                dur="1s"
+                from="0 12 12"
+                repeatCount="indefinite"
+                to="360 12 12"
+                type="rotate"
+              />
+            </path>
           </svg>
-        </a>
-        <br />
-        &copy; Copyright, Sai Sriyan Nakka 2025, All Rights Reserved.
-        <br />Version 0.9 <br />
-        Made using
-        <u> <a href="https://random-word-api.vercel.app">Random Word API</a></u>
-        and
-        <u>
-          <a href="https://dictionaryapi.dev">Dictionary API</a>
-        </u>
-      </center>
-    </footer>
+        </div>
+        <div id="wordDiv">
+          <p>
+            <audio src="" id="wordAudio" controls></audio>
+          </p>
+          <form id="wordForm">
+            <p>
+              <input type="text" id="wordInput" placeholder="Word" required />
+              <button id="submitButton" type="submit">Submit</button>
+            </p>
+          </form>
+          <p><u>Words Spelled</u>: <span id="spelledSpan">0</span></p>
+          <p><u>Lives</u>: <span id="livesSpan">0</span></p>
+          <p>
+            <button id="resetButton">Reset</button>
+            <button id="continueButton">Continue</button>
+          </p>
+        </div>
+      </main>
+      <hr id="footerHr" />
+      <footer>
+        <center>
+          <a href="https://github.com/Sriyan-Nakka" target="_blank">
+            <svg
+              class="icon github"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="white"
+                d="M12 1A10.89 10.89 0 0 0 1 11.77A10.79 10.79 0 0 0 8.52 22c.55.1.75-.23.75-.52v-1.83c-3.06.65-3.71-1.44-3.71-1.44a2.86 2.86 0 0 0-1.22-1.58c-1-.66.08-.65.08-.65a2.31 2.31 0 0 1 1.68 1.11a2.37 2.37 0 0 0 3.2.89a2.33 2.33 0 0 1 .7-1.44c-2.44-.27-5-1.19-5-5.32a4.15 4.15 0 0 1 1.11-2.91a3.78 3.78 0 0 1 .11-2.84s.93-.29 3 1.1a10.7 10.7 0 0 1 5.5 0c2.1-1.39 3-1.1 3-1.1a3.78 3.78 0 0 1 .11 2.84A4.15 4.15 0 0 1 19 11.2c0 4.14-2.58 5.05-5 5.32a2.5 2.5 0 0 1 .75 2v2.95c0 .35.2.63.75.52A10.8 10.8 0 0 0 23 11.77A10.89 10.89 0 0 0 12 1"
+              />
+            </svg>
+          </a>
+          <a href="https://sriyan-blogs.blogspot.com/">
+            <svg
+              class="icon blogger"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+            >
+              <path
+                fill="white"
+                d="M13 7a6 6 0 0 0-6 6v7a6 6 0 0 0 6 6h7a6 6 0 0 0 6-6v-5a1 1 0 0 0-1-1h-1a1 1 0 0 1-1-1a6 6 0 0 0-6-6zm0 5h4c.55 0 1 .45 1 1s-.45 1-1 1h-4c-.55 0-1-.45-1-1s.45-1 1-1m0 7h7c.55 0 1 .45 1 1s-.45 1-1 1h-7c-.55 0-1-.45-1-1s.45-1 1-1"
+              />
+            </svg>
+          </a>
+          <br />
+          &copy; Copyright, Sai Sriyan Nakka 2025, All Rights Reserved.
+          <br />Version 1.0 <br />
+          Made using
+          <u>
+            <a href="https://random-word-api.vercel.app">Random Word API</a></u
+          >
+          and
+          <u>
+            <a href="https://dictionaryapi.dev">Dictionary API</a>
+          </u>
+        </center>
+      </footer>
+    </div>
   </body>
 </html>
