@@ -6,6 +6,7 @@
     <meta name="author" content="Sai Sriyan" />
     <meta name="description" content="A remake of my Spell Bee Game!" />
     <title>Spell Bee 2</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
     <style>
       @font-face {
         font-family: "headFont";
@@ -109,6 +110,9 @@
           --button-bg: hsl(217, 33%, 25%);
           transform: scale(1.15);
         }
+        #playButton:hover {
+          --button-bg: hsl(150, 33%, 40%);
+        }
         summary:hover {
           font-size: 110%;
         }
@@ -130,6 +134,7 @@
       }
       #wordDiv p {
         margin: 10px 0px;
+        font-size: 1.75rem;
       }
       #resetButton {
         transition: all 0.2s ease-in-out;
@@ -241,7 +246,7 @@
         </a>
         <br />
         &copy; Copyright, Sai Sriyan Nakka 2025, All Rights Reserved.
-        <br />Version 0.7 <br />
+        <br />Version 0.9 <br />
         Made using
         <u> <a href="https://random-word-api.vercel.app">Random Word API</a></u>
         and
